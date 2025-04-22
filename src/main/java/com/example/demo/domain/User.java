@@ -12,7 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
-    @Column(name = "username", length = 50)
+    @Column(name = "user_name", length = 50)
     private String username;
 
     @Column(name = "password", length = 50)
