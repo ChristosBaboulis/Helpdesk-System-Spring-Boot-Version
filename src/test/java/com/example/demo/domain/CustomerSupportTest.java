@@ -24,5 +24,15 @@ public class CustomerSupportTest {
     @Test
     public void testGettersAndSetters() {
         Assertions.assertEquals("cs_firstName", customerSupport.getPersonalInfo().getFirstName());
+        Assertions.assertEquals("123_empl_code", customerSupport.getEmpCode());
+
+        customerSupport.setEmpCode("321_empl_code");
+        Assertions.assertEquals("321_empl_code", customerSupport.getEmpCode());
+    }
+
+    @Test
+    public void testEmptyConstructor() {
+        CustomerSupport customerSupport = new CustomerSupport();
+        Assertions.assertNotNull(customerSupport);
     }
 }
