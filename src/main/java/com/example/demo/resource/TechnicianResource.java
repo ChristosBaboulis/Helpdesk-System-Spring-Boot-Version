@@ -21,17 +21,14 @@ public class TechnicianResource {
     @Autowired
     private TechnicianMapper technicianMapper;
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Technician> getTechnicians() {
-        return technicianService.findAll();
+    @GetMapping
+    public ResponseEntity<List<TechnicianRepresentation>> getTechnicians() {
+        List<Technician> technicians =  technicianService.findAll();
+        return ResponseEntity.ok(technicianMapper.toRepresentationList(technicians));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TechnicianRepresentation> getTechnician(@PathVariable Integer id) {
-        if (id == null) {
-            return ResponseEntity.badRequest().build();
-        }
-
         Technician technician = technicianService.findBy(id);
         if (technician == null) {
             return ResponseEntity.notFound().build();

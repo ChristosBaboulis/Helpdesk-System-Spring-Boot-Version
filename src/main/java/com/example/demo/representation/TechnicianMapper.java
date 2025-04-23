@@ -7,6 +7,8 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 /*
@@ -18,6 +20,8 @@ public abstract class TechnicianMapper {
 
     //@Mapping(target = "specialties", ignore = true)
     public abstract Technician toModel(TechnicianRepresentation representation);
+
+    public abstract List<TechnicianRepresentation> toRepresentationList(List<Technician> technicians);
 
     @AfterMapping
     protected void extractPersonalInfo(@MappingTarget TechnicianRepresentation representation, Technician technician) {
