@@ -16,6 +16,18 @@ public class TechnicianService {
         this.technicianRepository = technicianRepository;
     }
 
+    public void saveTechnician(Technician technician) {
+        technicianRepository.save(technician);
+    }
+
+    public List<Technician> findAll() {
+        return technicianRepository.findAll();
+    }
+
+    public Technician findBy(Integer id){
+        return technicianRepository.findById(id).orElse(null);
+    }
+
     public List<Technician> getByLastName(String name) {
         return technicianRepository.findByPersonalInfoLastName(name);
     }
