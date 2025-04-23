@@ -23,7 +23,7 @@ public class TechnicianMapperTest {
 
     @Test
     @Transactional
-    public void testMapper(){
+    public void testMapperWithPersonalInfo(){
         TechnicianRepresentation technicianRepresentation = new TechnicianRepresentation();
         technicianRepresentation.techCode = "123";
         technicianRepresentation.firstName = "John";
@@ -61,5 +61,39 @@ public class TechnicianMapperTest {
         Assertions.assertEquals(LocalDate.of(1990, 1, 1), representation2.birthdate);
         Assertions.assertNotNull(representation2.address);
         Assertions.assertNotNull(representation2.id);
+    }
+
+    @Test
+    @Transactional
+    public void testMapperWOPersonalInfo(){
+        Technician technician = technicianService.findBy(4001);
+        Assertions.assertNotNull(technician);
+
+        technician.setPersonalInfo(null);
+        Assertions.assertNull(technician.getPersonalInfo());
+        technicianMapper.toRepresentation(technician);
+    }
+
+    @Test
+    public void testNullMappings(){
+        technicianMapper.toRepresentation(null);
+        technicianMapper.toModel(null);
+    }
+
+    @Test
+    public void testRepresentationInitialization(){
+        TechnicianRepresentation tr = new TechnicianRepresentation();
+        Assertions.assertNotNull(tr);
+
+        tr.id = 123;
+        tr.techCode = "123";
+        tr.firstName = "John";
+        tr.lastName = "Doe";
+        tr.username = "johndoe";
+        tr.password = "password";
+        tr.phone = "123456789";
+        tr.email = "t@t.tt";
+        tr.birthdate = LocalDate.of(1990, 1, 1);
+        tr.address = new Address();
     }
 }
