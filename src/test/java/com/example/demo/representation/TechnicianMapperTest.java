@@ -78,6 +78,7 @@ public class TechnicianMapperTest {
     public void testNullMappings(){
         technicianMapper.toRepresentation(null);
         technicianMapper.toModel(null);
+        technicianMapper.toRepresentationList(null);
     }
 
     @Test
