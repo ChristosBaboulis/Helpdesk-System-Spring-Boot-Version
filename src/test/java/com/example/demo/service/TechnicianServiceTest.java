@@ -16,4 +16,9 @@ public class TechnicianServiceTest {
     public void testGetByLastName() {
         Assertions.assertNotNull(technicianService.getByLastName("Christos"));
     }
+
+    @Test
+    public void testFindAll(){
+        Assertions.assertNotNull(technicianService.findAll());
+    }
 }
