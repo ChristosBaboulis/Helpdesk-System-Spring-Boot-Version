@@ -25,7 +25,8 @@ public interface TechnicianRepository extends JpaRepository<Technician, Integer>
 
     List<Technician> findByPersonalInfoBirthdate(LocalDate birthdate);
 
-    List<Technician> findByPersonalInfoAddress(Address address);
+    @Query("SELECT t FROM Technician t WHERE t.personalInfo.address.street = ?1 OR t.personalInfo.address.city = ?2 OR t.personalInfo.address.state = ?3 OR t.personalInfo.address.zipCode = ?4 OR t.personalInfo.address.streetNumber = ?5 OR t.personalInfo.address.country = ?6")
+    List<Technician> findByPersonalInfoAddress(String street, String city, String state, String zipCode, String streetNumber, String country);
 
 //    @Query("SELECT t FROM Technician t JOIN t.specialties s WHERE s.id = ?1")
 //    List<Technician> findBySpecialty(Integer specialtyId);

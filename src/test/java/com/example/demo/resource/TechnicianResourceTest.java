@@ -162,17 +162,17 @@ public class TechnicianResourceTest {
 
     @Test
     public void testGetTechniciansByAddress() throws Exception{
-        AddressRepresentation address = new AddressRepresentation();
-        address.country = "USA";
-        address.state = "LA";
-        address.city = "San Francisco";
-        address.street = "Elm Street";
-        address.streetNumber = "10";
-        address.zipCode = "94102";
+        AddressRepresentation addressRepresentation = new AddressRepresentation();
+        addressRepresentation.country = "USA";
+        addressRepresentation.state = "LA";
+        addressRepresentation.city = "San Francisco";
+        addressRepresentation.street = "Elm Street";
+        addressRepresentation.streetNumber = "10";
+        addressRepresentation.zipCode = "94102";
 
         MvcResult result = mockMvc.perform(get("/technicians/address")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(address)))
+                    .content(objectMapper.writeValueAsString(addressRepresentation)))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -181,5 +181,52 @@ public class TechnicianResourceTest {
         });
 
         Assertions.assertFalse(technicians.isEmpty());
+
+        //ONLY COUNTRY, STATE, CITY
+        addressRepresentation.street = null;
+        addressRepresentation.streetNumber = null;
+        addressRepresentation.zipCode = null;
+
+        result = mockMvc.perform(get("/technicians/address")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(addressRepresentation)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        json = result.getResponse().getContentAsString();
+        technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+
+        Assertions.assertFalse(technicians.isEmpty());
+
+        //ONLY COUNTRY AND STATE
+        addressRepresentation.city = null;
+        result = mockMvc.perform(get("/technicians/address")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(addressRepresentation)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        json = result.getResponse().getContentAsString();
+        technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+
+        Assertions.assertFalse(technicians.isEmpty());
+
+        //ONLY COUNTRY
+        addressRepresentation.state = null;
+        result = mockMvc.perform(get("/technicians/address")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(addressRepresentation)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        json = result.getResponse().getContentAsString();
+        technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+
+        Assertions.assertFalse(technicians.isEmpty());
     }
+
+    //TODO -> FAILURE TEST CALLOUTS
 }

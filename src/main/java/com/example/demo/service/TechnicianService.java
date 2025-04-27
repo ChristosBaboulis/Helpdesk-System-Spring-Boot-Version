@@ -52,5 +52,8 @@ public class TechnicianService {
 
     public List<Technician> findByBirthdate(LocalDate birthdate) { return technicianRepository.findByPersonalInfoBirthdate(birthdate); }
 
-    public List<Technician> findByAddress(Address address) { return technicianRepository.findByPersonalInfoAddress(address); }
+    public List<Technician> findByAddress(Address address) {
+        return technicianRepository.findByPersonalInfoAddress(address.getStreet(), address.getCity(),
+                address.getState(), address.getZipCode(), address.getStreetNumber(), address.getCountry());
+    }
 }
