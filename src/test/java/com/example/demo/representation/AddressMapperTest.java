@@ -22,6 +22,7 @@ public class AddressMapperTest {
         addressRepresentation.streetNumber = "12345";
 
         Address address = addressMapper.toModel(addressRepresentation);
+
         Assertions.assertEquals("San Francisco", address.getCity());
         Assertions.assertEquals("USA", address.getCountry());
         Assertions.assertEquals("CA", address.getState());

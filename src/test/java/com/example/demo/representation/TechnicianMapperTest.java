@@ -1,6 +1,5 @@
 package com.example.demo.representation;
 
-import com.example.demo.contacts.Address;
 import com.example.demo.domain.Technician;
 import com.example.demo.service.TechnicianService;
 import jakarta.transaction.Transactional;
