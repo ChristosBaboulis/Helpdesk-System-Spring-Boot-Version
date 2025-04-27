@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.contacts.Address;
 import com.example.demo.domain.Technician;
 import com.example.demo.persistence.TechnicianRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,5 @@ public class TechnicianService {
 
     public List<Technician> findByBirthdate(LocalDate birthdate) { return technicianRepository.findByPersonalInfoBirthdate(birthdate); }
 
-
+    public List<Technician> findByAddress(Address address) { return technicianRepository.findByPersonalInfoAddress(address); }
 }

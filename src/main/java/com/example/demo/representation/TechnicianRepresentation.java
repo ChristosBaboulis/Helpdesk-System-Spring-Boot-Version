@@ -14,6 +14,11 @@ public class TechnicianRepresentation {
     public String phone;
     public String email;
     public LocalDate birthdate;
-    public Address address;
+    public String street;
+    public String city;
+    public String state;
+    public String zipCode;
+    public String streetNumber;
+    public String country;
     //public List<SpecialtyRepresentation> specialties = new ArrayList<SpecialtyRepresentation>();
 }

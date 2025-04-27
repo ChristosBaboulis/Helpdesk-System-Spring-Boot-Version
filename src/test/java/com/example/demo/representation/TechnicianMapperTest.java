@@ -33,7 +33,12 @@ public class TechnicianMapperTest {
         technicianRepresentation.phone = "123456789";
         technicianRepresentation.email = "johndoe@example.com";
         technicianRepresentation.birthdate = LocalDate.of(1990, 1, 1);
-        technicianRepresentation.address = new Address();
+        technicianRepresentation.city = "San Francisco";
+        technicianRepresentation.state = "LA";
+        technicianRepresentation.country = "USA";
+        technicianRepresentation.zipCode = "94102";
+        technicianRepresentation.street = "Elm Street";
+        technicianRepresentation.streetNumber = "10";
 
         Technician technician = technicianMapper.toModel(technicianRepresentation);
 
@@ -59,7 +64,12 @@ public class TechnicianMapperTest {
         Assertions.assertEquals("johnDoe", representation2.username);
         Assertions.assertEquals("password", representation2.password);
         Assertions.assertEquals(LocalDate.of(1990, 1, 1), representation2.birthdate);
-        Assertions.assertNotNull(representation2.address);
+        Assertions.assertEquals("San Francisco", representation2.city);
+        Assertions.assertEquals("LA", representation2.state);
+        Assertions.assertEquals("USA", representation2.country);
+        Assertions.assertEquals("94102", representation2.zipCode);
+        Assertions.assertEquals("Elm Street", representation2.street);
+        Assertions.assertEquals("10", representation2.streetNumber);
         Assertions.assertNotNull(representation2.id);
     }
 
@@ -79,22 +89,5 @@ public class TechnicianMapperTest {
         technicianMapper.toRepresentation(null);
         technicianMapper.toModel(null);
         technicianMapper.toRepresentationList(null);
-    }
-
-    @Test
-    public void testRepresentationInitialization(){
-        TechnicianRepresentation tr = new TechnicianRepresentation();
-        Assertions.assertNotNull(tr);
-
-        tr.id = 123;
-        tr.techCode = "123";
-        tr.firstName = "John";
-        tr.lastName = "Doe";
-        tr.username = "johndoe";
-        tr.password = "password";
-        tr.phone = "123456789";
-        tr.email = "t@t.tt";
-        tr.birthdate = LocalDate.of(1990, 1, 1);
-        tr.address = new Address();
     }
 }

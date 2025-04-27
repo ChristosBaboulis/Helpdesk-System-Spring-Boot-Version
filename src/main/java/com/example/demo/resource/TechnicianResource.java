@@ -1,6 +1,9 @@
 package com.example.demo.resource;
 
+import com.example.demo.contacts.Address;
 import com.example.demo.domain.Technician;
+import com.example.demo.representation.AddressMapper;
+import com.example.demo.representation.AddressRepresentation;
 import com.example.demo.representation.TechnicianMapper;
 import com.example.demo.representation.TechnicianRepresentation;
 import com.example.demo.service.TechnicianService;
@@ -21,6 +24,8 @@ public class TechnicianResource {
 
     @Autowired
     private TechnicianMapper technicianMapper;
+    @Autowired
+    private AddressMapper addressMapper;
 
     //GET ALL TECHNICIANS AS A LIST
     @GetMapping
@@ -118,6 +123,31 @@ public class TechnicianResource {
             return ResponseEntity.notFound().build();
         }
 
+        return ResponseEntity.ok(technicianMapper.toRepresentationList(technicians));
+    }
+
+    //GET TECHNICIANS BY ADDRESS
+    @GetMapping("/address")
+    public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByAddress(@RequestBody AddressRepresentation addressRepresentation) {
+        Address address = addressMapper.toModel(addressRepresentation);
+        if (address.getCountry() == null) {
+            return ResponseEntity.badRequest().build();  // Country must always have a value
+        }
+        if (address.getState() != null && address.getCountry() == null) {
+            return ResponseEntity.badRequest().build();  // State w/o Country -> ERROR
+        }
+        if (address.getCity() != null && (address.getState() == null || address.getCountry() == null)) {
+            return ResponseEntity.badRequest().build();  // City w/o State, Country -> ERROR
+        }
+        if (address.getStreet() != null && (address.getCity() == null || address.getState() == null || address.getCountry() == null)) {
+            return ResponseEntity.badRequest().build();  // Street w/o City, State, Country -> ERROR
+        }
+        if ((address.getStreetNumber() != null || address.getZipCode() != null) &&
+                (address.getStreet() == null || address.getCity() == null || address.getState() == null || address.getCountry() == null)) {
+            return ResponseEntity.badRequest().build();  // StreetNumber/ZipCode w/o everything else -> ERROR
+        }
+
+        List<Technician> technicians = technicianService.findByAddress(address);
         return ResponseEntity.ok(technicianMapper.toRepresentationList(technicians));
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.contacts.Address;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,11 @@ public class TechnicianServiceTest {
     public void testFindByBirthdate() {
         LocalDate birthdate = LocalDate.parse("1985-09-15");
         Assertions.assertNotNull(technicianService.findByBirthdate(birthdate));
+    }
+
+    @Test
+    public void testFindByAddress() {
+        Address address = new Address("Elm Street", "San Francisco", "LA", "94102", "10", "USA");
+        Assertions.assertNotNull(technicianService.findByAddress(address));
     }
 }

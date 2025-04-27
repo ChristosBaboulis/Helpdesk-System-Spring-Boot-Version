@@ -1,5 +1,6 @@
 package com.example.demo.representation;
 
+import com.example.demo.contacts.Address;
 import com.example.demo.domain.PersonalInfo;
 import com.example.demo.domain.Technician;
 import org.mapstruct.AfterMapping;
@@ -31,7 +32,12 @@ public abstract class TechnicianMapper {
             representation.email = technician.getPersonalInfo().getEmail();
             representation.phone = technician.getPersonalInfo().getPhone();
             representation.birthdate = technician.getPersonalInfo().getBirthdate();
-            representation.address = technician.getPersonalInfo().getAddress();
+            representation.street = technician.getPersonalInfo().getAddress().getStreet();
+            representation.streetNumber = technician.getPersonalInfo().getAddress().getStreetNumber();
+            representation.zipCode = technician.getPersonalInfo().getAddress().getZipCode();
+            representation.country = technician.getPersonalInfo().getAddress().getCountry();
+            representation.state = technician.getPersonalInfo().getAddress().getState();
+            representation.city = technician.getPersonalInfo().getAddress().getCity();
         } else {
             System.out.println("personalInfo is NULL when mapping Technician → TechnicianRepresentation!");
         }
@@ -57,7 +63,14 @@ public abstract class TechnicianMapper {
         personalInfo.setEmail(representation.email);
         personalInfo.setPhone(representation.phone);
         personalInfo.setBirthdate(representation.birthdate);
-        personalInfo.setAddress(representation.address);
+        Address address = new Address();
+        address.setCity(representation.city);
+        address.setState(representation.state);
+        address.setZipCode(representation.zipCode);
+        address.setCountry(representation.country);
+        address.setStreet(representation.street);
+        address.setStreetNumber(representation.streetNumber);
+        personalInfo.setAddress(address);
 
         technician.setPersonalInfo(personalInfo);
     }

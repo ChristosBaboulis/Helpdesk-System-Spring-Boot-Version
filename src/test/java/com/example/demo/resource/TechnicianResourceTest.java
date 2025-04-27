@@ -1,6 +1,7 @@
 package com.example.demo.resource;
 
 import com.example.demo.NoSecurityTestConfig;
+import com.example.demo.representation.AddressRepresentation;
 import com.example.demo.representation.TechnicianRepresentation;
 import com.example.demo.service.TechnicianService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -156,5 +158,28 @@ public class TechnicianResourceTest {
         Assertions.assertFalse(technicians.isEmpty());
         LocalDate expectedBirthdate = LocalDate.of(1985, 9, 15);
         Assertions.assertEquals(expectedBirthdate, technicians.getFirst().birthdate);
+    }
+
+    @Test
+    public void testGetTechniciansByAddress() throws Exception{
+        AddressRepresentation address = new AddressRepresentation();
+        address.country = "USA";
+        address.state = "LA";
+        address.city = "San Francisco";
+        address.street = "Elm Street";
+        address.streetNumber = "10";
+        address.zipCode = "94102";
+
+        MvcResult result = mockMvc.perform(get("/technicians/address")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(address)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String json = result.getResponse().getContentAsString();
+        List<TechnicianRepresentation> technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+
+        Assertions.assertFalse(technicians.isEmpty());
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.persistence;
 
+import com.example.demo.contacts.Address;
 import com.example.demo.domain.Technician;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,6 +24,8 @@ public interface TechnicianRepository extends JpaRepository<Technician, Integer>
     List<Technician> findByPersonalInfoPhone(String phone);
 
     List<Technician> findByPersonalInfoBirthdate(LocalDate birthdate);
+
+    List<Technician> findByPersonalInfoAddress(Address address);
 
 //    @Query("SELECT t FROM Technician t JOIN t.specialties s WHERE s.id = ?1")
 //    List<Technician> findBySpecialty(Integer specialtyId);
