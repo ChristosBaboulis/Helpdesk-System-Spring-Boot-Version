@@ -5,6 +5,7 @@ import com.example.demo.persistence.TechnicianRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,7 +37,19 @@ public class TechnicianService {
         return technicianRepository.findByUsername(username);
     }
 
-    public List<Technician> findByLastName(String name) {
-        return technicianRepository.findByPersonalInfoLastName(name);
+    public List<Technician> findByFirstName(String firstName) {
+        return technicianRepository.findByFirstName(firstName);
     }
+
+    public List<Technician> findByLastName(String name) { return technicianRepository.findByPersonalInfoLastName(name); }
+
+    public List<Technician> findByEmail(String email) {
+        return technicianRepository.findByPersonalInfoEmail(email);
+    }
+
+    public List<Technician> findByPhone(String phone) { return technicianRepository.findByPersonalInfoPhone(phone); }
+
+    public List<Technician> findByBirthdate(LocalDate birthdate) { return technicianRepository.findByPersonalInfoBirthdate(birthdate); }
+
+
 }

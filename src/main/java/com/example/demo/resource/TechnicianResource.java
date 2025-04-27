@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequestMapping("/technicians")
@@ -48,12 +49,72 @@ public class TechnicianResource {
         return ResponseEntity.ok(technicianMapper.toRepresentationList(techniciansList));
     }
 
-    //GET TECHNICIAN BY USERNAME
+    //GET TECHNICIANS BY USERNAME
     @GetMapping("/username/{username}")
     public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByUsername(@PathVariable String username) {
         List<Technician> technicians = technicianService.findByUsername(username);
 
         if(technicians.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(technicianMapper.toRepresentationList(technicians));
+    }
+
+    //GET TECHNICIANS BY FIRSTNAME
+    @GetMapping("/first_name/{firstName}")
+    public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByFirstName(@PathVariable String firstName) {
+        List<Technician> technicians = technicianService.findByFirstName(firstName);
+
+        if(technicians.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(technicianMapper.toRepresentationList(technicians));
+    }
+
+    //GET TECHNICIANS BY LASTNAME
+    @GetMapping("/last_name/{lastName}")
+    public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByLastName(@PathVariable String lastName) {
+        List<Technician> technicians = technicianService.findByLastName(lastName);
+
+        if (technicians.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(technicianMapper.toRepresentationList(technicians));
+    }
+
+    //GET TECHNICIANS BY EMAIL
+    @GetMapping("/email/{email}")
+    public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByEmail(@PathVariable String email) {
+        List<Technician> technicians = technicianService.findByEmail(email);
+
+        if (technicians.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(technicianMapper.toRepresentationList(technicians));
+    }
+
+    //GET TECHNICIANS BY PHONE
+    @GetMapping("/phone/{phone}")
+    public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByPhone(@PathVariable String phone) {
+        List<Technician> technicians = technicianService.findByPhone(phone);
+
+        if (technicians.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(technicianMapper.toRepresentationList(technicians));
+    }
+
+    //GET TECHNICIANS BY BIRTHDATE
+    @GetMapping("/birthdate/{birthdate}")
+    public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByBirthdate(@PathVariable String birthdate) {
+        List<Technician> technicians = technicianService.findByBirthdate(LocalDate.parse(birthdate));
+
+        if (technicians.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 

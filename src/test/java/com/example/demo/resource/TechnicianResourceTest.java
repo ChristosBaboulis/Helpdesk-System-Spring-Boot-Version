@@ -15,6 +15,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -94,5 +95,66 @@ public class TechnicianResourceTest {
         });
         Assertions.assertFalse(technicians.isEmpty());
         Assertions.assertEquals("tech1", technicians.getFirst().username);
+    }
+
+    @Test
+    public void testGetTechniciansByFirstName() throws Exception{
+        MvcResult result = mockMvc.perform(get("/technicians/first_name/Christos"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String json = result.getResponse().getContentAsString();
+        List<TechnicianRepresentation> technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+        Assertions.assertFalse(technicians.isEmpty());
+        Assertions.assertEquals("Christos", technicians.getFirst().firstName);
+    }
+
+    @Test
+    public void testGetTechniciansByLastName() throws Exception{
+        MvcResult result = mockMvc.perform(get("/technicians/last_name/Brown"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String json = result.getResponse().getContentAsString();
+        List<TechnicianRepresentation> technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+        Assertions.assertFalse(technicians.isEmpty());
+        Assertions.assertEquals("Brown", technicians.getFirst().lastName);
+    }
+
+    @Test
+    public void testGetTechniciansByEmail() throws Exception{
+        MvcResult result = mockMvc.perform(get("/technicians/email/david.brown@example.com"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String json = result.getResponse().getContentAsString();
+        List<TechnicianRepresentation> technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+        Assertions.assertFalse(technicians.isEmpty());
+        Assertions.assertEquals("david.brown@example.com", technicians.getFirst().email);
+    }
+
+    @Test
+    public void testGetTechniciansByPhone() throws Exception{
+        MvcResult result = mockMvc.perform(get("/technicians/phone/3216549870"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String json = result.getResponse().getContentAsString();
+        List<TechnicianRepresentation> technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+        Assertions.assertFalse(technicians.isEmpty());
+        Assertions.assertEquals("3216549870", technicians.getFirst().phone);
+    }
+
+    @Test
+    public void testGetTechniciansByBirthdate() throws Exception{
+        MvcResult result = mockMvc.perform(get("/technicians/birthdate/1985-09-15"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String json = result.getResponse().getContentAsString();
+        List<TechnicianRepresentation> technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+        Assertions.assertFalse(technicians.isEmpty());
+        LocalDate expectedBirthdate = LocalDate.of(1985, 9, 15);
+        Assertions.assertEquals(expectedBirthdate, technicians.getFirst().birthdate);
     }
 }

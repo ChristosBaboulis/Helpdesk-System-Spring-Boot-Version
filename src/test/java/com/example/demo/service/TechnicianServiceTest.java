@@ -6,16 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
+
 @SpringBootTest
 @Sql("/import.sql")
 public class TechnicianServiceTest {
     @Autowired
     private TechnicianService technicianService;
-
-    @Test
-    public void testFindByLastName() {
-        Assertions.assertNotNull(technicianService.findByLastName("Christos"));
-    }
 
     @Test
     public void testFindAll(){
@@ -35,5 +32,23 @@ public class TechnicianServiceTest {
     @Test
     public void testFindByUsername()  {
         Assertions.assertNotNull(technicianService.findByUsername("tech1"));
+    }
+
+    @Test
+    public void testFindByFirstName() { Assertions.assertNotNull(technicianService.findByFirstName("Christos")); }
+
+    @Test
+    public void testFindByLastName() { Assertions.assertNotNull(technicianService.findByLastName("Brown")); }
+
+    @Test
+    public void testFindByEmail() { Assertions.assertNotNull(technicianService.findByEmail("david.brown@example.com")); }
+
+    @Test
+    public void testFindByPhone() { Assertions.assertNotNull(technicianService.findByPhone("3216549870")); }
+
+    @Test
+    public void testFindByBirthdate() {
+        LocalDate birthdate = LocalDate.parse("1985-09-15");
+        Assertions.assertNotNull(technicianService.findByBirthdate(birthdate));
     }
 }
