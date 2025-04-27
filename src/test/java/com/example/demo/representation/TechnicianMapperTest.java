@@ -66,7 +66,7 @@ public class TechnicianMapperTest {
     @Test
     @Transactional
     public void testMapperWOPersonalInfo(){
-        Technician technician = technicianService.findBy(4001);
+        Technician technician = technicianService.findById(4001);
         Assertions.assertNotNull(technician);
 
         technician.setPersonalInfo(null);

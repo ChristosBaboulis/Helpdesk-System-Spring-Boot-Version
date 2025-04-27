@@ -13,12 +13,27 @@ public class TechnicianServiceTest {
     private TechnicianService technicianService;
 
     @Test
-    public void testGetByLastName() {
-        Assertions.assertNotNull(technicianService.getByLastName("Christos"));
+    public void testFindByLastName() {
+        Assertions.assertNotNull(technicianService.findByLastName("Christos"));
     }
 
     @Test
     public void testFindAll(){
         Assertions.assertNotNull(technicianService.findAll());
+    }
+
+    @Test
+    public void testFindById(){
+        Assertions.assertNotNull(technicianService.findById(4001));
+    }
+
+    @Test
+    public void testFindByTechCode(){
+        Assertions.assertNotNull(technicianService.findByTechCode("TECH001"));
+    }
+
+    @Test
+    public void testFindByUsername()  {
+        Assertions.assertNotNull(technicianService.findByUsername("tech1"));
     }
 }

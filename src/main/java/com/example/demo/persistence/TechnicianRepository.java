@@ -15,6 +15,9 @@ public interface TechnicianRepository extends JpaRepository<Technician, Integer>
 
     List<Technician> findByPersonalInfoEmail(String email);
 
+    @Query("SELECT t FROM Technician t WHERE t.username = ?1")
+    List<Technician> findByUsername(String username);
+
 //    @Query("SELECT t FROM Technician t JOIN t.specialties s WHERE s.id = ?1")
 //    List<Technician> findBySpecialty(Integer specialtyId);
 //

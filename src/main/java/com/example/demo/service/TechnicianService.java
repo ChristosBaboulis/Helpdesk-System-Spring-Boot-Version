@@ -24,11 +24,19 @@ public class TechnicianService {
         return technicianRepository.findAll();
     }
 
-    public Technician findBy(Integer id){
+    public Technician findById(Integer id){
         return technicianRepository.findById(id).orElse(null);
     }
 
-    public List<Technician> getByLastName(String name) {
+    public List<Technician> findByTechCode(String techCode) {
+        return technicianRepository.findByTechCode(techCode);
+    }
+
+    public List<Technician> findByUsername(String username) {
+        return technicianRepository.findByUsername(username);
+    }
+
+    public List<Technician> findByLastName(String name) {
         return technicianRepository.findByPersonalInfoLastName(name);
     }
 }

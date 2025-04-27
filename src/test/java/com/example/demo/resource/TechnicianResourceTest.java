@@ -68,6 +68,31 @@ public class TechnicianResourceTest {
         });
 
         Assertions.assertFalse(technicians.isEmpty());
-        Assertions.assertEquals("TECH001", technicians.get(0).techCode);
+        Assertions.assertEquals("TECH001", technicians.getFirst().techCode);
+    }
+
+    @Test
+    public void testGetTechniciansByTechCode() throws Exception{
+        MvcResult result = mockMvc.perform(get("/technicians/tech_code/TECH001"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String json = result.getResponse().getContentAsString();
+        List<TechnicianRepresentation> technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+
+        Assertions.assertFalse(technicians.isEmpty());
+        Assertions.assertEquals("TECH001", technicians.getFirst().techCode);
+    }
+
+    @Test
+    public void testGetTechniciansByUsername() throws Exception{
+        MvcResult result = mockMvc.perform(get("/technicians/username/tech1"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String json = result.getResponse().getContentAsString();
+        List<TechnicianRepresentation> technicians = objectMapper.readValue(json, new TypeReference<List<TechnicianRepresentation>>() {
+        });
+        Assertions.assertFalse(technicians.isEmpty());
+        Assertions.assertEquals("tech1", technicians.getFirst().username);
     }
 }
