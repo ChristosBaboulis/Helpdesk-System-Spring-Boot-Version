@@ -50,9 +50,13 @@ public class TechnicianService {
         return technicianRepository.findByPersonalInfoEmail(email);
     }
 
-    public List<Technician> findByPhone(String phone) { return technicianRepository.findByPersonalInfoPhone(phone); }
+    public List<Technician> findByPhone(String phone) {
+        return technicianRepository.findByPersonalInfoPhone(phone);
+    }
 
-    public List<Technician> findByBirthdate(LocalDate birthdate) { return technicianRepository.findByPersonalInfoBirthdate(birthdate); }
+    public List<Technician> findByBirthdate(LocalDate birthdate) {
+        return technicianRepository.findByPersonalInfoBirthdate(birthdate);
+    }
 
     public List<Technician> findByAddress(Address address) {
         return technicianRepository.findByPersonalInfoAddress(address.getStreet(), address.getCity(),
