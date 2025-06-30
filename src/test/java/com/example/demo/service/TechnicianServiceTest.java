@@ -31,9 +31,7 @@ public class TechnicianServiceTest {
     }
 
     @Test
-    public void testFindByUsername()  {
-        Assertions.assertNotNull(technicianService.findByUsername("tech1"));
-    }
+    public void testFindByUsername()  { Assertions.assertNotNull(technicianService.findByUsername("tech1")); }
 
     @Test
     public void testFindByFirstName() { Assertions.assertNotNull(technicianService.findByFirstName("Christos")); }
