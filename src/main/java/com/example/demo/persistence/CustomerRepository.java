@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-    List<Customer> findByCustomerCode(Customer customerCode);
+    List<Customer> findByCustomerCode(String customerCode);
 
     @Query("SELECT c FROM Customer c WHERE c.personalInfo.firstName = ?1")
     List<Customer> findByFirstName(String firstName);
