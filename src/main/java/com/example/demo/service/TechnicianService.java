@@ -42,7 +42,9 @@ public class TechnicianService {
         return technicianRepository.findByFirstName(firstName);
     }
 
-    public List<Technician> findByLastName(String name) { return technicianRepository.findByPersonalInfoLastName(name); }
+    public List<Technician> findByLastName(String lastName) {
+        return technicianRepository.findByPersonalInfoLastName(lastName);
+    }
 
     public List<Technician> findByEmail(String email) {
         return technicianRepository.findByPersonalInfoEmail(email);
