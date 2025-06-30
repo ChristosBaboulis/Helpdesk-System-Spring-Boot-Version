@@ -10,16 +10,16 @@ public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    protected Integer id;
 
     @Column(name = "user_name", length = 50)
-    private String username;
+    protected String username;
 
     @Column(name = "password", length = 50)
-    private String password;
+    protected String password;
 
     @Embedded
-    private PersonalInfo personalInfo;
+    protected PersonalInfo personalInfo;
 
     public User(String username, String password, PersonalInfo personalInfo) {
         this.username = username;
