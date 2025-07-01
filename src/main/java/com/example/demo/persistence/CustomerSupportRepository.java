@@ -1,6 +1,5 @@
 package com.example.demo.persistence;
 
-import com.example.demo.domain.Customer;
 import com.example.demo.domain.CustomerSupport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +9,8 @@ import java.util.List;
 
 public interface CustomerSupportRepository extends JpaRepository<CustomerSupport, Integer> {
     List<CustomerSupport> findByEmpCode(String empCode);
+
+    List<CustomerSupport> findByUsername(String username);
 
     @Query("SELECT cs " +
             "FROM CustomerSupport cs " +
