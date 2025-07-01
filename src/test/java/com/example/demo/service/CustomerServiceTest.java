@@ -67,7 +67,7 @@ public class CustomerServiceTest {
         customer.getPersonalInfo().setAddress(new Address("Gripari", "Kallithea",
                 "Attiki", "12345", "165", "Greece"));
 
-        customerService.saveCustomer(customer);
+        customerService.save(customer);
 
         Customer customer1 = customerService.findByCustomerCode("cust2").getFirst();
 

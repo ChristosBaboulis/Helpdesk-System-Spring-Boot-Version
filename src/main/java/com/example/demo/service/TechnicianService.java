@@ -18,7 +18,7 @@ public class TechnicianService {
         this.technicianRepository = technicianRepository;
     }
 
-    public void saveTechnician(Technician technician) {
+    public void save(Technician technician) {
         technicianRepository.save(technician);
     }
 

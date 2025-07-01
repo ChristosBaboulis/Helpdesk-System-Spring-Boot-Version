@@ -51,7 +51,7 @@ public class TechnicianMapperTest {
         Assertions.assertEquals(LocalDate.of(1990, 1, 1), technician.getPersonalInfo().getBirthdate());
         Assertions.assertNotNull(technician.getPersonalInfo().getAddress());
 
-        technicianService.saveTechnician(technician);
+        technicianService.save(technician);
 
         TechnicianRepresentation representation2 = technicianMapper.toRepresentation(technician);
         Assertions.assertNotNull(representation2);
