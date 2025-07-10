@@ -2,7 +2,6 @@ package com.example.demo.representation;
 
 import com.example.demo.contacts.Address;
 import com.example.demo.domain.Customer;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
