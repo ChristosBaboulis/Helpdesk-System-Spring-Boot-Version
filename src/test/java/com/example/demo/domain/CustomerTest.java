@@ -63,5 +63,4 @@ public class CustomerTest {
 
         customer.setPersonalInfo(new PersonalInfo());
     }
-
 }
