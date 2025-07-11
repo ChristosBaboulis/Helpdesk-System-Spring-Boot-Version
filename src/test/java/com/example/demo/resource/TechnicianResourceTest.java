@@ -3,7 +3,6 @@ package com.example.demo.resource;
 import com.example.demo.NoSecurityTestConfig;
 import com.example.demo.representation.AddressRepresentation;
 import com.example.demo.representation.TechnicianRepresentation;
-import com.example.demo.service.TechnicianService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -30,12 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TechnicianResourceTest {
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private TechnicianResource technicianResource;
-
-    @Autowired
-    private TechnicianService technicianService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -125,7 +118,7 @@ public class TechnicianResourceTest {
 
     @Test
     public void testGetTechniciansByEmail() throws Exception{
-        MvcResult result = mockMvc.perform(get("/technicians/email/david.brown@example.com"))
+        MvcResult result = mockMvc.perform(get("/technicians/emailAddress/david.brown@example.com"))
                 .andExpect(status().isOk())
                 .andReturn();
         String json = result.getResponse().getContentAsString();
@@ -137,7 +130,7 @@ public class TechnicianResourceTest {
 
     @Test
     public void testGetTechniciansByPhone() throws Exception{
-        MvcResult result = mockMvc.perform(get("/technicians/phone/3216549870"))
+        MvcResult result = mockMvc.perform(get("/technicians/telephoneNumber/3216549870"))
                 .andExpect(status().isOk())
                 .andReturn();
         String json = result.getResponse().getContentAsString();
@@ -182,7 +175,7 @@ public class TechnicianResourceTest {
 
         Assertions.assertFalse(technicians.isEmpty());
 
-        //ONLY COUNTRY, STATE, CITY
+        // only country, state, city
         addressRepresentation.street = null;
         addressRepresentation.streetNumber = null;
         addressRepresentation.zipCode = null;
@@ -199,7 +192,7 @@ public class TechnicianResourceTest {
 
         Assertions.assertFalse(technicians.isEmpty());
 
-        //ONLY COUNTRY AND STATE
+        // only country and state
         addressRepresentation.city = null;
         result = mockMvc.perform(get("/technicians/address")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -213,7 +206,7 @@ public class TechnicianResourceTest {
 
         Assertions.assertFalse(technicians.isEmpty());
 
-        //ONLY COUNTRY
+        // only country
         addressRepresentation.state = null;
         result = mockMvc.perform(get("/technicians/address")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -228,5 +221,5 @@ public class TechnicianResourceTest {
         Assertions.assertFalse(technicians.isEmpty());
     }
 
-    //TODO -> FAILURE TEST CALLOUTS
+    // TODO -> FAILURE TEST CALLOUTS
 }
