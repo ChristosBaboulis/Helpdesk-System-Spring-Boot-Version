@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 @Entity
 @DiscriminatorValue("TECHNICIAN")
 public class Technician extends User {
-    @Column(name = "tech_code", length = 10)
+    @Column(name = "technician_code", length = 10)
     private String techCode;
 
     public Technician(String username, String password, PersonalInfo personalInfo, String techCode) {

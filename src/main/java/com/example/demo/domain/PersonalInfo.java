@@ -15,13 +15,13 @@ public class PersonalInfo {
     @Column(name = "last_name", length = 50)
     private String lastName;
 
-    @Column(name = "email", length = 50)
+    @Column(name = "email_address", length = 50)
     private String email;
 
-    @Column(name = "phone", length = 10)
+    @Column(name = "telephone_number", length = 10)
     private String phone;
 
-    @Column(name = "birthdate", length = 10)
+    @Column(name = "birth_date", length = 10)
     private LocalDate birthdate;
 
     @Embedded

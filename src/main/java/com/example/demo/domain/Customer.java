@@ -4,7 +4,6 @@ import com.example.demo.contacts.Address;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 @Table(name = "Customers")
@@ -22,7 +21,7 @@ public class Customer {
 
     public Customer() {}
 
-    //Constructor with address as argument
+    // Constructor with Address as Object arg
     public Customer(String customerCode, String firstName, String lastName,
                     String telephoneNumber, String emailAddress,
                     LocalDate birthdate, Address address) {
@@ -30,7 +29,6 @@ public class Customer {
         this.personalInfo = new PersonalInfo(firstName, lastName, emailAddress, telephoneNumber, birthdate, address);
     }
 
-    // GETTERS - SETTERS
     public int getId() {
         return id;
     }
