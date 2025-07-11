@@ -40,10 +40,10 @@ public class TechnicianServiceTest {
     public void testFindByLastName() { Assertions.assertNotNull(technicianService.findByLastName("Brown")); }
 
     @Test
-    public void testFindByEmail() { Assertions.assertNotNull(technicianService.findByEmail("david.brown@example.com")); }
+    public void testFindByEmailAddress() { Assertions.assertNotNull(technicianService.findByEmailAddress("david.brown@example.com")); }
 
     @Test
-    public void testFindByPhone() { Assertions.assertNotNull(technicianService.findByPhone("3216549870")); }
+    public void testFindByTelephoneNumber() { Assertions.assertNotNull(technicianService.findByTelephoneNumber("3216549870")); }
 
     @Test
     public void testFindByBirthdate() {

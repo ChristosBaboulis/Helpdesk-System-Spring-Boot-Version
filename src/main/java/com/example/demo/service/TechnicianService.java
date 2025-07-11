@@ -46,12 +46,12 @@ public class TechnicianService {
         return technicianRepository.findByPersonalInfoLastName(lastName);
     }
 
-    public List<Technician> findByEmail(String email) {
-        return technicianRepository.findByPersonalInfoEmail(email);
+    public List<Technician> findByEmailAddress(String emailAddress) {
+        return technicianRepository.findByPersonalInfoEmail(emailAddress);
     }
 
-    public List<Technician> findByPhone(String phone) {
-        return technicianRepository.findByPersonalInfoPhone(phone);
+    public List<Technician> findByTelephoneNumber(String telephoneNumber) {
+        return technicianRepository.findByPersonalInfoPhone(telephoneNumber);
     }
 
     public List<Technician> findByBirthdate(LocalDate birthdate) {

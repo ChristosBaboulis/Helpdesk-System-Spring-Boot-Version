@@ -46,13 +46,13 @@ public class CustomerSupportServiceTest {
     }
 
     @Test
-    public void testFindByEmail() {
-        Assertions.assertNotNull(customerSupportService.findByEmail("test.2@example.com"));
+    public void testFindByEmailAddress() {
+        Assertions.assertNotNull(customerSupportService.findByEmailAddress("test.2@example.com"));
     }
 
     @Test
-    public void testFindByPhone() {
-        Assertions.assertNotNull(customerSupportService.findByPhone("1233211232"));
+    public void testFindByTelephoneNumber() {
+        Assertions.assertNotNull(customerSupportService.findByTelephoneNumber("1233211232"));
     }
 
     @Test

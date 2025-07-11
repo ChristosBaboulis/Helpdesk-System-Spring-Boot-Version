@@ -1,9 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.contacts.Address;
-import com.example.demo.domain.Customer;
 import com.example.demo.domain.CustomerSupport;
-import com.example.demo.domain.Technician;
 import com.example.demo.persistence.CustomerSupportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,12 +46,12 @@ public class CustomerSupportService {
         return customerSupportRepository.findByPersonalInfoLastName(lastName);
     }
 
-    public List<CustomerSupport> findByEmail(String email) {
-        return customerSupportRepository.findByPersonalInfoEmail(email);
+    public List<CustomerSupport> findByEmailAddress(String emailAddress) {
+        return customerSupportRepository.findByPersonalInfoEmail(emailAddress);
     }
 
-    public List<CustomerSupport> findByPhone(String phone) {
-        return customerSupportRepository.findByPersonalInfoPhone(phone);
+    public List<CustomerSupport> findByTelephoneNumber(String telephoneNumber) {
+        return customerSupportRepository.findByPersonalInfoPhone(telephoneNumber);
     }
 
     public List<CustomerSupport> findByBirthdate(LocalDate birthdate) {

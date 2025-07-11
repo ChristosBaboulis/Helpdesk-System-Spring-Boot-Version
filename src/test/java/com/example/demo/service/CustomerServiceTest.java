@@ -3,7 +3,6 @@ package com.example.demo.service;
 import com.example.demo.contacts.Address;
 import com.example.demo.domain.Customer;
 import com.example.demo.domain.PersonalInfo;
-import com.example.demo.persistence.CustomerRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +34,10 @@ public class CustomerServiceTest {
     public void testFindByLastName() { Assertions.assertNotNull(customerService.findByLastName("Doe")); }
 
     @Test
-    public void testFindByEmail() { Assertions.assertNotNull(customerService.findByEmail("c@b.gr")); }
+    public void testFindByEmailAddress() { Assertions.assertNotNull(customerService.findByEmailAddress("c@b.gr")); }
 
     @Test
-    public void testFindByPhone() { Assertions.assertNotNull(customerService.findByPhone("6911111111")); }
+    public void testFindByTelephoneNumber() { Assertions.assertNotNull(customerService.findByTelephoneNumber("6911111111")); }
 
     @Test
     public void testFindByBirthdate() {

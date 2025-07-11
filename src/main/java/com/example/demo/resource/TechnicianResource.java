@@ -91,7 +91,7 @@ public class TechnicianResource {
     // GET /emailAddress/{emailAddress} - Retrieve Technicians by emailAddress given as path parameter
     @GetMapping("/emailAddress/{emailAddress}")
     public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByEmail(@PathVariable String emailAddress) {
-        List<Technician> technicians = technicianService.findByEmail(emailAddress);
+        List<Technician> technicians = technicianService.findByEmailAddress(emailAddress);
 
         if (technicians.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -103,7 +103,7 @@ public class TechnicianResource {
     // GET /telephoneNumber/{telephoneNumber} - Retrieve Technicians by telephoneNumber given as path parameter
     @GetMapping("/telephoneNumber/{telephoneNumber}")
     public ResponseEntity<List<TechnicianRepresentation>> getTechnicianByPhone(@PathVariable String telephoneNumber) {
-        List<Technician> technicians = technicianService.findByPhone(telephoneNumber);
+        List<Technician> technicians = technicianService.findByTelephoneNumber(telephoneNumber);
 
         if (technicians.isEmpty()) {
             return ResponseEntity.notFound().build();

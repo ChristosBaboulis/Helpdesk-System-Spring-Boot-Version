@@ -42,12 +42,12 @@ public class CustomerService {
         return customerRepository.findByPersonalInfoLastName(lastName);
     }
 
-    public List<Customer> findByEmail(String email) {
-        return customerRepository.findByPersonalInfoEmail(email);
+    public List<Customer> findByEmailAddress(String emailAddress) {
+        return customerRepository.findByPersonalInfoEmail(emailAddress);
     }
 
-    public List<Customer> findByPhone(String phone) {
-        return customerRepository.findByPersonalInfoPhone(phone);
+    public List<Customer> findByTelephoneNumber(String telephoneNumber) {
+        return customerRepository.findByPersonalInfoPhone(telephoneNumber);
     }
 
     public List<Customer> findByBirthdate(LocalDate birthdate) {
