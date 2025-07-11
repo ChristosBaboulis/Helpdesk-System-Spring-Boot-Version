@@ -19,7 +19,7 @@ import java.util.List;
 public abstract class TechnicianMapper {
     public abstract TechnicianRepresentation toRepresentation(Technician technician);
 
-    //@Mapping(target = "specialties", ignore = true)
+    // @Mapping(target = "specialties", ignore = true)
     public abstract Technician toModel(TechnicianRepresentation representation);
 
     public abstract List<TechnicianRepresentation> toRepresentationList(List<Technician> technicians);

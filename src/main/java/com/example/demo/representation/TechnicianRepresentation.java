@@ -1,7 +1,5 @@
 package com.example.demo.representation;
 
-import com.example.demo.contacts.Address;
-
 import java.time.LocalDate;
 
 public class TechnicianRepresentation {
@@ -20,5 +18,5 @@ public class TechnicianRepresentation {
     public String zipCode;
     public String streetNumber;
     public String country;
-    //public List<SpecialtyRepresentation> specialties = new ArrayList<SpecialtyRepresentation>();
+    // public List<SpecialtyRepresentation> specialties = new ArrayList<SpecialtyRepresentation>();
 }
